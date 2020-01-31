@@ -3,42 +3,40 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-      XylophoneApp()
+      SoundApp()
   );
 }
 
-class XylophoneApp extends StatelessWidget {
-  void playSound(int soundNumber){
-    final player = AudioCache();
-    player.play('note$soundNumber.wav');
-  }
-  Expanded buildKey({Color color, int soundNumber}){
-    return Expanded(
-      child: FlatButton(
-        color: color,
-        onPressed: (){
-          playSound(soundNumber);
-        },
-      ),
-    );
-  }
+class SoundApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.teal,
+        appBar: AppBar(
+          backgroundColor: Colors.teal.shade900,
+          title: Center(
+            child: Text(
+              'A Bird with sound',
+              style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
         body: SafeArea(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              buildKey(color: Colors.green, soundNumber: 1),
-              buildKey(color: Colors.blue, soundNumber: 2),
-              buildKey(color: Colors.yellow, soundNumber: 3),
-              buildKey(color: Colors.pink, soundNumber: 4),
-              buildKey(color: Colors.teal, soundNumber: 5),
-              buildKey(color: Colors.red, soundNumber: 6),
-              buildKey(color: Colors.brown, soundNumber: 7),
-
+               FlatButton(
+                 color: Colors.teal.shade200,
+                 child: Image.asset('images/bird.jpg'),
+                 onPressed: (){
+                   final player = AudioCache();
+                   player.play('bird.wav');
+                 },
+               ),
             ],
           ),
         ),
